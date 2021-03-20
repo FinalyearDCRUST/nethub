@@ -1,0 +1,67 @@
+.status {
+    @include flex(row, center, center);
+    position: relative;
+    align-self: stretch;
+    justify-self: center;
+    padding: 0 0.5em;
+    overflow: visible;
+
+    span {
+        @include font(800, 12px);
+        color: var(--c-status);
+        transition: all 0.3s;
+        line-height: 0.5em;
+    }
+
+    svg {
+        @include position(0, 0, 0, 0);
+        margin: auto;
+        position: absolute;
+        overflow: visible;
+
+        rect {
+            fill: none;
+            stroke-width: 1.5;
+            stroke-linejoin: round;
+            stroke-linecap: round;
+            stroke: var(--c-primary);
+            transition: all 0.3s;
+
+            &.outline {
+                transition: all 0.3s;
+                stroke-dasharray: 20 80;
+                stroke: var(--c-status);
+
+                @include animate('1s infinite linear') {
+                    from {
+                        stroke-dashoffset: 80;
+                    }
+                    to {
+                        stroke-dashoffset: -20;
+                    }
+                }
+
+                animation-play-state: paused;
+            }
+        }
+
+        @media screen and (-webkit-device-pixel-ratio: 1) {
+            rect {
+                stroke-width: 2;
+            }
+        }
+    }
+
+    &[data-state='loading'],
+    &[data-state='removing'] {
+        svg rect {
+            &:not(.outline) {
+                stroke: var(--c-background-secondary);
+            }
+
+            &.outline {
+                animation-play-state: running;
+            }
+        }
+    }
+}

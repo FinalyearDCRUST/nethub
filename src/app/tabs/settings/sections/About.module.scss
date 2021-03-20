@@ -1,0 +1,33 @@
+.about {
+
+    a, b {
+        font-weight: 600;
+    }
+
+    section {
+        background: var(--c-background-secondary);
+        padding: 0.5em 1em;
+    }
+
+    ul {
+        font-size: 0.87em;
+        list-style: none;
+        line-height: 1.75em;
+        width: 100%;
+
+        li {
+            @include flex(row, center, space-between);
+            background: var(--c-background-secondary);
+            flex-shrink: 0;
+        }
+
+        @include mq-phones {
+            font-size: 0.95em;
+        }
+    }
+
+    p {
+        font-size: 0.9em;
+        text-align: center;
+    }
+}

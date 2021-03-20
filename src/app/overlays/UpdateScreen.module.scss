@@ -1,0 +1,47 @@
+.loadingScreen {
+    @include position(0, 0, 0, 0);
+    @include flex(row, center, center);
+    background: var(--c-background-primary);
+    position: absolute;
+    z-index: 100;
+
+    @include animate('1s 2s ease forwards') {
+        99.99% {
+            visibility: visible;
+        }
+        100% {
+            visibility: hidden;
+            opacity: 0;
+        }
+    }
+
+    svg {
+        @include size(40%);
+        position: absolute;
+        margin: auto;
+
+        path {
+            transform-origin: center center;
+
+            @include animate('2s ease-in-out forwards') {
+                50% {
+                    transform: rotate(180deg);
+                    clip-path: inset(0 0 0 0);
+                }
+                100% {
+                    clip-path: inset(0 0 100% 0);
+                    transform: rotate(180deg);
+                }
+            }
+        }
+
+        @include animate('2s 1s ease forwards') {
+            50% {
+                transform: scale(0.1);
+            }
+            100% {
+                transform: translateY(-50vh) scale(0.05);
+            }
+        }
+    }
+}

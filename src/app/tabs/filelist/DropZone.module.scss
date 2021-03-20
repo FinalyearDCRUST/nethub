@@ -1,0 +1,80 @@
+.dropZone {
+    @include position(0, 0, 0, 0);
+    @include flex(column, center, center);
+    position: absolute;
+    background: var(--c-background-primary);
+    pointer-events: none;
+    transition: all 0.3s;
+    z-index: 10;
+    opacity: 0;
+
+    .mobile,
+    .desktop {
+        @include flex(column, center, center);
+    }
+
+    .desktop {
+        > button {
+            @include flex(row, center);
+            @include button_large;
+            @include button_color('primary');
+            margin-top: 0.35em;
+            pointer-events: all;
+            border-radius: 5em;
+            flex-shrink: 0;
+
+            > span {
+                font-size: 0.9em;
+            }
+
+            > bc-icon {
+                margin-right: 0.5em;
+            }
+        }
+
+        > bc-icon {
+            @include size(2em);
+            color: var(--c-text-primary);
+            transform: translateY(-1em);
+            transition: all 0.3s;
+            opacity: 0;
+        }
+    }
+
+    .mobile {
+        color: var(--c-text-primary);
+        display: none;
+
+        > h1 {
+            text-align: center;
+        }
+
+        bc-icon {
+            @include size(7.5vh);
+        }
+    }
+
+    @include mq-phones {
+        margin-bottom: 12.5vmin;
+
+        .desktop {
+            display: none;
+        }
+
+        .mobile {
+            display: flex;
+        }
+    }
+}
+
+.dragOver {
+    --color: var(--c-text-primary);
+    pointer-events: all;
+    transition: all 0.3s;
+    opacity: 1;
+
+    .desktop bc-icon {
+        transform: none;
+        opacity: 1;
+    }
+}

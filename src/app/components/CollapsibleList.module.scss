@@ -1,0 +1,20 @@
+$grid-margin: 1em;
+
+.collapsibleList {
+    > header {
+        @include flex(row, center, center);
+    }
+
+    @include mq-phones {
+        .customHeader > span {
+            display: none;
+        }
+    }
+}
+
+.list {
+    @include flex(column);
+    max-height: 0;
+    transition: max-height 0.3s;
+    overflow: hidden;
+}

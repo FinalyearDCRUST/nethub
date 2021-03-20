@@ -1,0 +1,83 @@
+@mixin button_small {
+    @include font(800, 0.75em);
+    color: var(--c-text-secondary);
+    padding: 0.5em 0.75em;
+    border-radius: 0.2em;
+}
+
+@mixin button_middle {
+    @include font(600, 1em);
+    border-radius: 0.2em;
+    padding: 0.5em 0.85em;
+    color: var(--c-text-secondary);
+}
+
+@mixin button_large {
+    @include font(600, 1.05em);
+    border-radius: 0.15em;
+    padding: 0.5em 0.85em;
+    color: var(--c-text-secondary);
+}
+
+@mixin button_icon {
+    @include flex(row, center, flex-start);
+
+    > bc-icon {
+        margin-right: 0.6em;
+    }
+}
+
+@mixin button_disabled {
+    pointer-events: none;
+    cursor: not-allowed;
+    background: var(--c-background-secondary) !important;
+    color: var(--c-text-disabled) !important;
+}
+
+@mixin hover_effect($color, $props...) {
+    transition: all 0.3s;
+
+    @if length($props) == 0 {
+        $props: (background-color)
+    }
+
+    @for $i from 1 through length($props) {
+        #{nth($props, $i)}: var($color);
+    }
+
+    &:hover,
+    &:active {
+        $accent-color: var($color + '-accent');
+        @for $i from 1 through length($props) {
+            #{nth($props, $i)}: $accent-color;
+        }
+    }
+}
+
+@mixin disabled {
+    &[disabled],
+    &[disabled]:active,
+    &[disabled]:hover {
+        @content;
+    }
+}
+
+@mixin focus_border($var) {
+    &:focus {
+        box-shadow: 0 0 0 2px var($var);
+    }
+}
+
+@mixin button_color($name, $target: 'background') {
+    #{$target}: var(#{'--c-' + $name});
+    transition: all 0.3s;
+
+    &:hover,
+    &:active {
+        #{$target}: var(#{'--c-' + $name + '-accent'});
+    }
+
+    &:focus {
+        box-shadow: 0 0 0 2px var(#{'--c-' + $name + '-focus'});
+    }
+}

@@ -1,0 +1,44 @@
+.massActions {
+    @include flex(row, center);
+    border-top: 2px solid var(--c-background-secondary);
+    transition: all 0.3s;
+    margin: auto 0 -4em 0;
+    padding: 1em;
+    height: 3em;
+    color: var(--c-text-primary);
+
+    &.visible {
+        margin-bottom: 0;
+    }
+}
+
+.controls {
+    @include flex(row, center);
+    flex-shrink: 0;
+    margin-left: auto;
+    color: var(--c-background-primary);
+
+    > button {
+        @include margin-between-h(0.25em);
+        @include button_small;
+    }
+
+    .actionBtn {
+        transition: all 0.3s;
+
+        $colors: ('primary', 'yellow', 'red', 'primary');
+        @for $i from 1 through 4 {
+            &:nth-child(#{$i}) {
+                @include button_color(nth($colors, $i));
+            }
+        }
+    }
+
+    .clearSelectionBtn {
+        @include flex(row, center, center);
+        @include hover_effect(--c-background-secondary);
+        color: var(--c-text-primary);
+        align-self: stretch;
+        margin-left: 1em !important;
+    }
+}

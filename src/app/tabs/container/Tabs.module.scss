@@ -1,0 +1,5 @@
+.tabs {
+    @include flex(column);
+    @include size(100%);
+    overflow: visible;
+}

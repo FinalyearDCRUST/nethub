@@ -1,0 +1,87 @@
+$grid-margin: 1em;
+
+.section {
+
+    > * {
+        @include width(80%, auto, 27.5em);
+
+        @include mq-phones {
+            min-width: 100%;
+        }
+    }
+
+    > header {
+        @include flex(row, center);
+        background: var(--c-background-secondary);
+        padding: 0.5em 0.75em;
+        border-radius: 0.25em;
+        margin: 0 0 0.5em 0;
+        z-index: 2;
+
+        bc-icon {
+            @include size(0.9em);
+            margin-right: 0.5em;
+        }
+
+        > h1 {
+            @include font(600, 1em);
+            flex-shrink: 0;
+            margin: 0;
+        }
+
+        > span {
+            @include white-space-overflow();
+            @include font(600, 0.85em);
+
+            &::before {
+                content: '-';
+                margin: 0 0.25em;
+            }
+        }
+    }
+
+    > section {
+        @include margin-between-v(0.5em);
+        border: 2px solid var(--c-background-secondary);
+        border-radius: 0.25em;
+
+        &.borderless {
+            border: none;
+        }
+
+        &.standalone header {
+            border-bottom: none;
+        }
+
+        header {
+            @include flex(row, center);
+            border-bottom: 2px solid var(--c-background-secondary);
+            padding: 0 $grid-margin * 0.75;
+            height: 3em;
+
+            .headerBtn {
+                @include button_small;
+                @include hover_effect(--c-primary);
+                transition: all 0.3s;
+
+                &.danger {
+                    @include hover_effect(--c-red);
+
+                    &:focus {
+                        box-shadow: 0 0 0 2px var(--c-red-focus);
+                    }
+                }
+            }
+
+            > h3 {
+                @include font(600, 1em);
+                margin: auto auto auto 0.5em;
+            }
+        }
+
+        article {
+            padding: $grid-margin * 0.75;
+            line-height: 1.45em;
+        }
+    }
+}

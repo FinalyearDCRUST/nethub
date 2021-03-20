@@ -1,0 +1,166 @@
+@import 'shared';
+
+.fileItem {
+    @include table-layout;
+    align-items: center;
+    padding: 0.4em 1em;
+    width: 100%;
+    cursor: pointer;
+    position: relative;
+    border-bottom: 1px solid var(--c-background-secondary);
+    --checkbox-border-radius: 2px;
+    --checkbox-border-width: 1.5px;
+    --checkbox-size: 1.25em;
+    --checkbox-stroke-width: 7.5;
+    --checkbox-color: var(--c-status);
+    --checkbox-color-accent: var(--c-status-accent);
+    --checkbox-color-focus: var(--c-status-focus);
+
+    > p:hover ~ .copyLinkOverlay {
+        visibility: visible;
+    }
+
+    .copyLinkOverlay {
+        @include position(0, 0, 0, 0);
+        @include flex(row, center, center);
+        position: absolute;
+        background: rgba(black, 0.075);
+        visibility: hidden;
+        z-index: 1;
+
+        &:hover {
+            visibility: visible;
+        }
+
+        span {
+            @include font(600, 0.95em);
+            background: var(--c-background-primary);
+            padding: 0.25em 1em;
+            border-radius: 0.15em;
+            color: var(--c-text-primary);
+        }
+
+        @include mq-phones {
+            display: none;
+        }
+    }
+
+    &:not([data-state='ready']) {
+        &:hover .copyLinkOverlay {
+            visibility: hidden;
+        }
+
+        .actionsBox > button {
+            color: var(--c-text-primary-accent);
+            pointer-events: none;
+            cursor: not-allowed;
+
+            &:hover {
+                color: var(--c-text-primary-accent);
+            }
+        }
+    }
+
+    $state-color: (
+            ('loading', 'yellow'),
+            ('ready', 'primary'),
+            ('removing', 'red'),
+    );
+
+    @each $item in $state-color {
+        &[data-state=#{nth($item, 1)}] {
+            $color: nth($item, 2);
+            --c-status: var(#{'--c-' + $color});
+            --c-status-accent: var(#{'--c-' + $color + '-accent'});
+            --c-status-focus: var(#{'--c-' + $color + '-focus'});
+        }
+    }
+}
+
+.menuButton {
+    color: var(--c-text-primary);
+}
+
+.actionsBox {
+    @include flex(row, center, space-evenly);
+    pointer-events: all;
+    z-index: 2;
+
+    > button {
+        @include size(15px);
+        @include flex(row, center);
+        text-transform: uppercase;
+        transition: all 0.3s;
+        position: relative;
+        overflow: hidden;
+        pointer-events: all;
+        border-radius: 0.15em;
+
+        > bc-icon {
+            @include size(100%);
+        }
+
+        &.shareBtn {
+            @include button_color('primary', 'color');
+            color: var(--c-text-primary);
+        }
+
+        &.removeBtn {
+            @include button_color('red', 'color');
+            color: var(--c-text-primary);
+        }
+
+        &.refreshBtn {
+            @include button_color('green', 'color');
+            color: var(--c-text-primary);
+        }
+    }
+
+    @include mq-phones {
+        > button {
+            @include size(20px);
+        }
+    }
+}
+
+.fileName {
+    @include flex(row, center);
+    overflow: hidden;
+
+    span {
+        @include white-space-overflow();
+
+        &:first-child {
+            max-width: 90%;
+        }
+
+        &:last-child {
+            @include white-space-overflow();
+            max-width: 50%;
+        }
+
+        &.serializedName {
+            font-size: 0.85em;
+            margin-left: 0.35em;
+            color: var(--c-text-secondary);
+
+            @include animate('0.3s ease-in') {
+                from {
+                    opacity: 0;
+                }
+                to {
+                    opacity: 1;
+                }
+            }
+        }
+    }
+}
+
+.itemText {
+    color: var(--c-text-primary);
+}
+
+.alignRight {
+    text-align: right;
+}
+

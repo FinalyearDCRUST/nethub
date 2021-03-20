@@ -1,0 +1,42 @@
+@import 'shared';
+
+.fileList {
+    @include flex(column, stretch, flex-start);
+    overflow: hidden;
+    max-height: 100%;
+    min-height: 100%;
+}
+
+.header {
+    @include table-layout;
+    @include font(600, 14px);
+    color: var(--c-text-primary-accent);
+    border-bottom: 2px solid var(--c-background-secondary);
+    margin: 1.25em 0 0;
+    padding: 0 1em 0.25em;
+
+    > p:not(:last-child) > span {
+        @include hover_effect(--c-text-primary, color);
+        position: relative;
+        cursor: pointer;
+    }
+}
+
+.alignRight {
+    text-align: right;
+}
+
+.alignCenter {
+    text-align: center;
+}
+
+.list {
+    will-change: transform;
+    overflow: auto;
+    flex-grow: 1;
+
+    @include mq-desktop {
+        padding-bottom: 3.5em;
+    }
+}
+
