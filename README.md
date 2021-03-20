@@ -106,13 +106,6 @@ Go [here](docs/barevps.md) to see how to set beam.cafe up manually.
 ![beam cafe - notifications](https://user-images.githubusercontent.com/30767528/84598294-03b23b00-ae6a-11ea-97e6-4d497c666e53.png)
 
 
-### Funding
-Maintaining a beaming cafe costs time and, although very little thanks to concept of beam.cafe, money. If you want you can support me on [GitHub](https://github.com/sponsors/Simonwep), [Patreon](https://www.patreon.com/simonwep), or you could [buy me a coffee](https://www.buymeacoffee.com/aVc3krbXQ).
-
-
-### Contributing
-You've found a bug, have an idea for a future or want to make a PR? Check out our [contribution guidelines](https://github.com/dot-cafe/beam.cafe/blob/master/.github/CONTRIBUTING.md) to get started!
-
 ---
 
 <p align="center">
